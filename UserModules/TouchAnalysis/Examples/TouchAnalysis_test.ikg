@@ -64,7 +64,7 @@
         height="301"
         source="TouchBoardI.TOUCH_OUTPUT"
         min="0"
-        max="300"
+        max="500"
         title = "Electrode Signals"
         labels = "1,2,3,4,5,6,7,8,9,10,11,12"
         style = "--color:black,black,black,black,black,black,black,black,black,black,black,black;--fill:black,black,black,black,black,black,black,black,black,black,black,black"
