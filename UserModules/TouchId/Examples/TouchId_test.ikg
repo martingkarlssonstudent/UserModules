@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+
+<group title = "TouchId">
+
+  <module
+    class="TouchBoardI"
+    name="TouchBoardI"
+    port="/dev/ttyACM1"
+  />
+
+  <module
+    class="TouchId"
+    name="TouchId"
+    touchType="0"
+  />
+
+  <module
+      class="Constant"
+      name="TouchEmotion_Data"
+      data = "0.61 0.63 0.4 0 0 0 0.67 0 0.73 0 0.54;
+      0.58 0 0 0.65 0.46 0.43 0.46 0 0 0 0;
+      0 0 0 0.59 0.45 0.56 0 0.89 0 0 0;
+      0 0 0 0 0 0.47 0 0.6 0 0.61 0;
+      0 0 0 0 0 0 0 0.45 0 0 0;
+      0 0 0 0 0 0 0 0.41 0 0 0"
+  />
+
+  <connection source = "TouchBoardI.TOUCH_OUTPUT" target = "TouchId.TOUCH_INPUT"/>
+  <connection  source = "TouchEmotion_Data.OUTPUT"  target = "TouchId.TOUCHEMOTION_INPUT" />
+
+  <module class="Constant" name="Enable" data = "1"/>
+  <module class="Constant" name="Diameter" data = "0"/>
+
+  <view name="Epi the Robot" >
+    <slider-horizontal  x = "420" y = "100" height = "200" width = "200" title = "N.o. touch types" parameter = "TouchId.noTouchTypes" select = "0" count = "1" labels = "" min = "0" max = "11" step = "1" show_values = "true" show_title = "true" show_frame = "false" style = "" frame-style = ""/>
+    <bar-graph
+        x="20" y="400"
+        width="301"
+        height="301"
+        source="TouchBoardI.TOUCH_OUTPUT"
+        min="0"
+        max="300"
+        title = "Electrode Signals"
+        labels = "1,2,3,4,5,6,7,8,9,10,11,12"
+        style = "--color:black,black,black,black,black,black,black,black,black,black,black,black;--fill:black,black,black,black,black,black,black,black,black,black,black,black"
+    />
+    <bar-graph
+        x="400" y="400"
+        width="700"
+        height="301"
+        source="TouchId.TOUCHCERTAINTY_OUTPUT"
+        min="0"
+        max="1"
+        title = "Touch recognition certainty"
+        labels = "hold,rub,pat,pick,poke,press,scratch,slap,stroke,tap,tickle"
+        style = "--color:turquoise,turquoise,turquoise,brown,brown,brown,beige,turquoise,black,turquoise,turquoise;--fill:turquoise,turquoise,turquoise,brown,brown,brown,beige,turquoise,black,turquoise,turquoise"
+    />
+  </view>
+
+</group>

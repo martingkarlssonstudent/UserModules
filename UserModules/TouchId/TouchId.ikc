@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+
+<class name="TouchId" description="TouchIds">
+
+	<description type="text">
+		Classifies the type of touch. By taking input from the TouchBoard via the TouchBoardInput module
+	</description>
+
+	<example description="A simple example">
+	<module
+		class="TouchId"
+		name="TouchId"
+	/>
+	</example>
+
+	<input
+		name="TOUCH_INPUT"
+		description="Input from module TouchBoardInput. Signal of electrodes of the TouchBoard."
+	/>
+
+	<input
+		name="TOUCHEMOTION_INPUT"
+		description="Touch and emotion data input."
+	/>
+
+	<output
+		name="TOUCHCERTAINTY_OUTPUT"
+		description="Touch classification certainty output."
+		size_x = "11"
+		size_y = "1"
+	/>
+
+	<output name="TOUCHACTIVE_OUTPUT" description="Touch active." size="1" />
+
+	<link class="TouchId" />
+
+  <parameter name="noTouchTypes" type="int" default="1" description="N.o. touch types" />
+	<parameter name="touchType"
+		description="Touch type."
+		type="list"
+		values="0/1/2/3/4/5/6/7/8/9/10"
+		default="0"/>
+
+	<view name="Touch data">
+		<bar-graph
+				x="50" y="50"
+				width="1000"
+				height="700"
+				source=".TOUCHCERTAINTY_OUTPUT"
+				min="0"
+				max="1"
+				title = "Touch type certainty"
+				labels = "0,1,2,3,4,5,6,7,8,9,10"
+				style = "--color:red,green,blue,grey,yellow,black,purple,orange,cyan,magenta,brown,pink;--fill:red,green,blue,grey,yellow,black,purple,orange,cyan,magenta,brown,pink"
+		/>
+	</view>
+
+	<reference>
+		Test.
+	</reference>
+
+	<author>
+		<name>Martin Karlsson</name>
+		<_email></_email>
+		<affiliation>LUCS</affiliation>
+	</author>
+
+	<files>
+		<file>TouchId.h</file>
+		<file>TouchId.cc</file>
+		<file>TouchId.ikc</file>
+	</files>
+
+</class>
